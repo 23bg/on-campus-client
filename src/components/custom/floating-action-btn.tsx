@@ -16,7 +16,8 @@ const HelpFloatingActionButton = () => {
       <Button
         onClick={handleHelpClick}
         title="Need Help?"
-        className="fixed bottom-6 right-6 w-20 h-8 rounded-2xl bg-green-600 hover:bg-green-700 text-white shadow-xl z-50 flex items-center justify-center gap-2 transition-transform hover:scale-110"
+        color="bg-[var(--brand)]"
+        className="fixed bottom-6 right-6 w-20 h-8 rounded-2xl bg-[var(--brand)] hover:bg-[var(--brand)] text-white shadow-xl z-50 flex items-center justify-center gap-2 transition-transform hover:scale-110"
         aria-label="Help"
       >
         <p>Help</p>

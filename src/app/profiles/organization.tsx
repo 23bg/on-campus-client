@@ -6,12 +6,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Building2, MapPin, Globe, Briefcase } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Footer from "@/components/custom/footer";
+import { CollegeForm } from "../college/college-form";
 
 export default function OrganizationProfile() {
   return (
  <div className="overflow-hidden">
      <ScrollArea className="h-screen">
       <div className="pt-16"/>
+
+      <CollegeForm/>
       
       <div className="max-w-5xl mx-auto p-6 space-y-6">
         {/* Header */}

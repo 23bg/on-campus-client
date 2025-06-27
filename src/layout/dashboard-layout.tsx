@@ -63,9 +63,6 @@ const DashboardLayout: React.FC = () => {
   const navLinks = [
     { href: "", label: "Overview" },
     { href: "jobs", label: "Jobs" },
-    { href: "colleges", label: "Colleges" },
-    { href: "companies", label: "Companies" },
-    { href: "courses", label: "Courses" },
     { href: "students", label: "Students" },
     { href: "members", label: "Members" },
     { href: "find-talent", label: "Find Talent" },
@@ -77,7 +74,7 @@ const DashboardLayout: React.FC = () => {
       <header className="flex items-center justify-between p-3 px-6 border-b border-zinc-300 dark:border-zinc-900 fixed top-0 left-0 right-0 bg-white dark:bg-black z-10">
         {/* Logo and Navigation Links */}
         <div className="flex items-center justify-start flex-1">
-          <Link to="/" className="text-green-500 mr-5 text-lg font-semibold">
+          <Link to="/" className="text-[var(--brand)] mr-5 text-lg font-semibold">
             On Campus
           </Link>
           <div className="hidden md:flex items-center justify-start">
@@ -87,7 +84,7 @@ const DashboardLayout: React.FC = () => {
                 <Link key={href} to={`/${href}`}>
                   <Button
                     variant="link"
-                    className={`font-light ${isActive ? "text-black dark:text-white underline" : "text-gray-400 dark:text-zinc-500 hover:text-green-500 dark:hover:text-green-500"}`}
+                    className={`font-light ${isActive ? "text-black dark:text-white underline" : "text-gray-400 dark:text-zinc-500 hover:text-[var(--brand)] dark:hover:text-[var(--brand)]"}`}
                   >
                     {label}
                   </Button>

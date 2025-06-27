@@ -18,8 +18,14 @@ export const ROUTES = {
     DASHBOARD_MEMBERS: "members", 
     DASHBOARD_MESSAGES: "messages", 
 
+
+    COLLEGE_CREATE: "college/create",
+
   // Profile
-    DASHBOARD_ORG: "org/:username", 
+    DASHBOARD_COLLEGE: "college/:username", 
+    DASHBOARD_COMPANY: "company/:username", 
+    DASHBOARD_COLLEGE_UPDATE: "college/:username/update", 
+    DASHBOARD_COMPANY_UPDATE: "company/:username/update", 
     DASHBOARD_USER: ":username", 
     
     // Support & Help Routes

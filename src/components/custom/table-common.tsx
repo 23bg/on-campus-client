@@ -52,7 +52,7 @@ const TableComponent = <T extends Record<string, any>>({
     );
 
     useEffect(() => {
-        let sorted = [...data];
+        const sorted = [...data];
         if (sortColumn) {
             sorted.sort((a, b) => {
                 if (a[sortColumn]! < b[sortColumn]!) return sortDirection === "asc" ? -1 : 1;

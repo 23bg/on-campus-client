@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // useNavigate from react-router-dom for navigation
+import { Link, useNavigate } from "react-router-dom"; // useNavigate from react-router-dom for navigation
 import { toast } from "sonner"; // Assuming you're using 'sonner' for toast notifications
 
 import { Label } from "@/components/ui/label"; // Assuming a custom Label component
 import CommonInput from "@/components/common/CommonInput"; // Assuming a custom input component
 import CommonButton from "@/components/common/CommonButton"; // Assuming a custom button component
+import { Button } from "@/components/ui/button";
+import { Helmet } from "react-helmet-async";
 
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -42,63 +44,119 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="flex min-h-screen w-full flex-col px-4 py-8 md:py-12 font-normal bg-grey-100 text-sm">
-      <div className="flex-grow w-full max-w-xs mx-auto">
-        <div className="flex flex-col gap-4">
-          <form onSubmit={handleSignUp} className="space-y-4">
-            <div className="flex flex-col items-center gap-3">
-              <h1 className="text-xl font-semibold text-gray-900 tracking-tight">Sign Up</h1>
-            </div>
+    <>
+    <Helmet>
+      <title>Sign Up - On Campus Portel</title>
+    </Helmet>
+    <div className="min-h-screen flex flex-col px-4 bg-zinc-50 text-sm font-normal">
 
-            <div className="space-y-2">
-              <div className="grid gap-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="email">Email</Label>
-                  <CommonInput
-                    id="email"
-                    type="email"
-                    placeholder="m@example.com"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
+      {/* Header */}
+      <header className="w-full flex justify-between items-center py-4">
+        <img src="/favicon.ico" alt="On Campus Logo" className="h-10" />
 
-                <div className="grid gap-2">
-                  <Label htmlFor="password">Password</Label>
-                  <CommonInput
-                    id="password"
-                    type="password"
-                    placeholder="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-              </div>
-
-              {error && <p className="text-sm text-red-500">{error}</p>}
-
-              <CommonButton
-                type="submit"
-                className="w-full bg-green-500 text-black"
-                disabled={!email || !password || loading}
-                loading={loading}
-              >
-                Sign Up
-              </CommonButton>
-            </div>
-          </form>
-
-          <div className="text-center text-sm pt-1">
-            Already have an account?{" "}
-            <a href="/login" className="underline underline-offset-4 mx-1 text-green-500">
-              Login
-            </a>
-          </div>
+        <div className="flex items-center gap-4">
+          <Link to="/log-in">
+            <Button variant="link" size="sm" className="text-green-600">
+              Log In
+            </Button>
+          </Link>
+          <Button variant="outline" size="sm">
+            Contact Us
+          </Button>
         </div>
-      </div>
+      </header>
+
+      {/* Sign Up Form */}
+      <main className="flex-grow w-full max-w-xs mx-auto flex flex-col justify-center items-center">
+         <div className="text-center space-y-2 py-4">
+            <h1 className="text-xl font-semibold text-gray-900">
+              Welcome to <span className="text-green-600">On Campus</span>
+            </h1>
+            <p className="text-xs text-muted-foreground">
+              Empowering campuses with smart, secure placement solutions for tomorrow’s workforce.
+            </p>
+          </div>
+        <form onSubmit={handleSignUp} className="w-full space-y-6">
+         
+
+          {/* Input Fields */}
+          <div className="space-y-4">
+            <div className="grid gap-2">
+              <Label htmlFor="email">Email</Label>
+              <CommonInput
+                id="email"
+                type="email"
+                placeholder="m@example.com"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div className="grid gap-2">
+              <Label htmlFor="password">Password</Label>
+              <CommonInput
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            {/* Error Message */}
+            {error && <p className="text-sm text-red-500">{error}</p>}
+
+            {/* Submit Button */}
+            <CommonButton
+              type="submit"
+              className="w-full bg-[var(--brand)] text-black"
+              disabled={!email || !password || loading}
+              loading={loading}
+            >
+              Sign Up
+            </CommonButton>
+          </div>
+
+          {/* Already have an account? */}
+          {/* <div className="text-center text-sm">
+            Already have an account?{" "}
+            <a
+              href="/login"
+              className="underline underline-offset-4 text-green-600 hover:text-green-700"
+            >
+              Log in
+            </a>
+          </div> */}
+            <p className="text-[11px] text-center text-muted-foreground mt-4">
+            Your information is securely stored and never shared without consent.
+          </p>
+        </form>
+      </main>
+
+      {/* Footer */}
+      <footer className="mt-auto py-6 text-center text-xs text-muted-foreground px-4">
+        <p>
+          By signing up, you agree to our{" "}
+          <a
+            href="/terms"
+            className="underline text-green-600 hover:text-green-700 transition-colors"
+          >
+            Terms of Service
+          </a>{" "}
+          and{" "}
+          <a
+            href="/privacy"
+            className="underline text-green-600 hover:text-green-700 transition-colors"
+          >
+            Privacy Policy
+          </a>.
+        </p>
+      </footer>
     </div>
+    </>
+
   );
 };
 

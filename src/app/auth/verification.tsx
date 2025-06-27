@@ -68,7 +68,7 @@ const Verification: React.FC = () => {
 
               <CommonButton
                 type="submit"
-                className="w-full bg-green-500 text-black"
+                className="w-full bg-[var(--brand)] text-black"
                 disabled={!otp || loading}
                 loading={loading}
               >

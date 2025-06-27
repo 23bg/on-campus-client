@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label"; // Assuming you have a custom Lab
 import CommonInput from "@/components/common/CommonInput"; // Assuming you have a custom CommonInput component
 import CommonButton from "@/components/common/CommonButton"; // Assuming you have a custom CommonButton component
 
-const NewPassword: React.FC = () => {
+const ResetPassword: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -85,7 +85,7 @@ const NewPassword: React.FC = () => {
 
               <CommonButton
                 type="submit"
-                className="w-full bg-green-500 text-black"
+                className="w-full bg-[var(--brand)] text-black"
                 disabled={!password || !confirmPassword || loading}
                 loading={loading}
               >
@@ -99,4 +99,4 @@ const NewPassword: React.FC = () => {
   );
 };
 
-export default NewPassword;
+export default ResetPassword;

@@ -75,7 +75,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ onClose }) => {
             <div
               className={`max-w-[75%] px-3 py-2 rounded-lg ${
                 msg.sender === "user"
-                  ? "bg-green-600 text-white ml-auto"
+                  ? "bg-[var(--brand)] text-white ml-auto"
                   : "bg-gray-200 dark:bg-zinc-800 text-black dark:text-white"
               }`}
             >
@@ -98,7 +98,7 @@ const ChatBot: React.FC<ChatBotProps> = ({ onClose }) => {
         />
         <button
           onClick={handleSend}
-          className="p-2 bg-green-600 hover:bg-green-700 text-white rounded-md"
+          className="p-2 bg-[var(--brand)] hover:bg-[var(--brand)] text-white rounded-md"
         >
           <Send className="w-4 h-4" />
         </button>

@@ -1,0 +1,8 @@
+// tsconfig.eslint.json
+{
+  "extends": "./tsconfig.json",
+  "include": ["src", "vite.config.ts", "eslint.config.ts"],
+  "compilerOptions": {
+    "noEmit": true
+  }
+}

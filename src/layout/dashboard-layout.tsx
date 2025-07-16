@@ -17,6 +17,8 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import FloatingActionButton from "@/components/custom/floating-action-btn";
 import CommandPalette from "@/components/custom/search-box";
+import DashboardFooter from "@/components/custom/dashboard-footer";
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 
 const DashboardLayout: React.FC = () => {
   const { username } = useParams<{ username: string }>();
@@ -64,6 +66,7 @@ const DashboardLayout: React.FC = () => {
     { href: "", label: "Overview" },
     { href: "jobs", label: "Jobs" },
     { href: "students", label: "Students" },
+    { href: "courses", label: "Courses" },
     { href: "members", label: "Members" },
     { href: "find-talent", label: "Find Talent" },
   ];
@@ -77,22 +80,36 @@ const DashboardLayout: React.FC = () => {
           <Link to="/" className="text-[var(--brand)] mr-5 text-lg font-semibold">
             On Campus
           </Link>
-          <div className="hidden md:flex items-center justify-start">
-            {navLinks.map(({ href, label }) => {
-              const isActive = location.pathname === `/${href}` || (href === "" && location.pathname === "/");
-              return (
-                <Link key={href} to={`/${href}`}>
-                  <Button
-                    variant="link"
-                    className={`font-light ${isActive ? "text-black dark:text-white underline" : "text-gray-400 dark:text-zinc-500 hover:text-[var(--brand)] dark:hover:text-[var(--brand)]"}`}
-                  >
-                    {label}
-                  </Button>
-                </Link>
-              );
-            })}
+
+          {/* Desktop Navigation using NavigationMenu */}
+          <div className="hidden md:block">
+            <NavigationMenu>
+              <NavigationMenuList className="flex space-x-4">
+                {navLinks.map(({ href, label }) => {
+                  const isActive =
+                    location.pathname === `/${href}` || (href === "" && location.pathname === "/");
+
+                  return (
+                    <NavigationMenuItem key={href}>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          to={`/${href}`}
+                          className={`text-sm font-light px-2 py-1 rounded transition-colors ${isActive
+                              ? "text-black dark:text-white"
+                              : "text-gray-400 dark:text-zinc-500 hover:text-[var(--brand)] dark:hover:text-[var(--brand)]"
+                            }`}
+                        >
+                          {label}
+                        </Link>
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                  );
+                })}
+              </NavigationMenuList>
+            </NavigationMenu>
           </div>
         </div>
+
 
         {/* Icons */}
 
@@ -139,61 +156,27 @@ const DashboardLayout: React.FC = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden flex flex-col gap-4 bg-white dark:bg-gray-800 p-4 border-t border-gray-300 dark:border-gray-700 mt-[64px]">
-          {/* Navigation Links */}
-          {navLinks.map(({ href, label }) => {
-            const isActive = location.pathname.includes(`/${href}`);
-            return (
-              <Link
-                key={href}
-                to={`/${username}/${href}`}
-                className={`flex items-center gap-2 ${isActive ? "text-green-500" : "text-gray-600 dark:text-white"}`}
-                onClick={() => setMenuOpen(false)}
-              >
-                <span>{label}</span>
-              </Link>
-            );
-          })}
-
-          {/* Profile and Settings Links */}
-          <div className="border-t border-gray-300 dark:border-gray-700 pt-4">
-            <Link
-              to={`/${username}`}
-              className="flex items-center gap-2 text-gray-600 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-md"
-              onClick={() => setMenuOpen(false)}
-            >
-              Profile
-            </Link>
-            <Link
-              to="/settings"
-              className="flex items-center gap-2 text-gray-600 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-md"
-              onClick={() => setMenuOpen(false)}
-            >
-              Settings
-            </Link>
-            <Link
-              to="/notifications"
-              className="flex items-center gap-2 text-gray-600 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-md"
-              onClick={() => setMenuOpen(false)}
-            >
-              Notifications
-            </Link>
-            <Link
-              to="/messages"
-              className="flex items-center gap-2 text-gray-600 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-md"
-              onClick={() => setMenuOpen(false)}
-            >
-              Messages
-            </Link>
-            {/* Logout Option */}
-            <Link
-              to="/logout"
-              className="flex items-center gap-2 text-gray-600 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-md"
-              onClick={() => setMenuOpen(false)}
-            >
-              Logout
-            </Link>
-          </div>
+        <div className="md:hidden fixed top-[64px] left-0 right-0 z-20 bg-white dark:bg-black border-t border-zinc-200 dark:border-zinc-800 overflow-y-auto max-h-[calc(100vh-64px)]">
+          <NavigationMenu className="w-full p-4">
+            <NavigationMenuList className="flex flex-col space-y-2">
+              {navLinks.map(({ href, label }) => (
+                <NavigationMenuItem key={href}>
+                  <NavigationMenuTrigger className="w-full text-left">{label}</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <NavigationMenuLink asChild>
+                      <Link
+                        to={`/${href}`}
+                        className="block px-4 py-2 text-sm hover:bg-muted hover:text-black dark:hover:text-white rounded"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        Go to {label}
+                      </Link>
+                    </NavigationMenuLink>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
         </div>
       )}
 
@@ -201,12 +184,13 @@ const DashboardLayout: React.FC = () => {
       <main className="flex flex-col flex-1 overflow-auto bg-zinc-50 dark:bg-zinc-950">
         <Outlet />
       </main>
-
+      <DashboardFooter />
       {/* Floating Buttons and Command Palette */}
       <FloatingActionButton />
       <CommandPalette open={open} onOpenChange={setOpen} />
     </div>
   );
 };
+
 
 export default DashboardLayout;

@@ -2,6 +2,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '@/api/axios-instance';
 import MemberTypes from '@/types';
+import { AxiosError } from 'axios';
 
 
 
@@ -24,30 +25,27 @@ export const fetchMembers = createAsyncThunk('members/fetchAll', async (_, thunk
     return response.data;
   } catch (error) {
   const err = error as AxiosError<{ message?: string }>;
-  return thunkAPI.rejectWithValue(err.response?.data?.message 
-    return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to fetch members');
+  return thunkAPI.rejectWithValue(err.response?.data?.message)
   }
 });
 
-export const createMember = createAsyncThunk('members/create', async (data: Partial<Member>, thunkAPI) => {
+export const createMember = createAsyncThunk('members/create', async (data: Partial<MemberTypes>, thunkAPI) => {
   try {
     const response = await axios.post('/api/members', data);
     return response.data;
   } catch (error) {
   const err = error as AxiosError<{ message?: string }>;
-  return thunkAPI.rejectWithValue(err.response?.data?.message 
-    return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to create member');
-  }
+  return thunkAPI.rejectWithValue(err.response?.data?.message)
+}
 });
 
-export const updateMember = createAsyncThunk('members/update', async ({ id, data }: { id: string, data: Partial<Member> }, thunkAPI) => {
+export const updateMember = createAsyncThunk('members/update', async ({ id, data }: { id: string, data: Partial<MemberTypes> }, thunkAPI) => {
   try {
     const response = await axios.put(`/api/members/${id}`, data);
     return response.data;
   } catch (error) {
   const err = error as AxiosError<{ message?: string }>;
-  return thunkAPI.rejectWithValue(err.response?.data?.message 
-    return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to update member');
+  return thunkAPI.rejectWithValue(err.response?.data?.message)
   }
 });
 
@@ -57,9 +55,8 @@ export const deleteMember = createAsyncThunk('members/delete', async (id: string
     return id;
   } catch (error) {
   const err = error as AxiosError<{ message?: string }>;
-  return thunkAPI.rejectWithValue(err.response?.data?.message 
-    return thunkAPI.rejectWithValue(error.response?.data?.message || 'Failed to delete member');
-  }
+  return thunkAPI.rejectWithValue(err.response?.data?.message)
+ }
 });
 
 // Slice
@@ -89,7 +86,7 @@ const memberSlice = createSlice({
         if (index !== -1) state.members[index] = action.payload;
       })
       .addCase(deleteMember.fulfilled, (state, action) => {
-        state.members = state.members.filter((m) => m.id !== action.payload);
+        state.members = state.members.filter((m) => m.id.toString() !== action.payload);
       });
   },
 });

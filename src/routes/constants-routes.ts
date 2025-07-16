@@ -1,37 +1,42 @@
 export const ROUTES = {
-    // Auth Routes
+
+  AUTH: {
     LOGIN: "/log-in",
-    SIGN_UP: "/sign-up",
+    VERIFICATION: "/verification",   
+    STUDENT_SIGNUP: "/student-sign-up",
     FORGOT_PASSWORD: "/forgot-password",
-    RESET_PASSWORD: "/reset-password",
-  
-    // Dashboard Routes
-    DASHBOARD: "/",
-    DASHBOARD_HOME: "",
-    DASHBOARD_COLLEGES: "colleges",
-    DASHBOARD_JOBS: "jobs",
-    DASHBOARD_STUDENTS: "students",
-    DASHBOARD_EDUCATORS: "educators",
-    DASHBOARD_COMPANIES: "companies",
-    DASHBOARD_SETTINGS: "settings",
-    DASHBOARD_FIND_TALENT: "find-talent",
-    DASHBOARD_MEMBERS: "members", 
-    DASHBOARD_MESSAGES: "messages", 
+    RESET_PASSWORD: "/reset-password/:token",
+  },
 
+  // Dashboard Base
+  DASHBOARD: "/",
 
-    COLLEGE_CREATE: "college/create",
+  // Dashboard Sub Routes
+  DASHBOARD_HOME: "", // Optional: use with nested routing
+  DASHBOARD_COLLEGES: "colleges",
+  DASHBOARD_JOBS: "jobs",
+  DASHBOARD_STUDENTS: "students",
+  DASHBOARD_EDUCATORS: "educators",
+  DASHBOARD_COMPANIES: "companies",
+  DASHBOARD_SETTINGS: "settings",
+  DASHBOARD_FIND_TALENT: "find-talent",
+  DASHBOARD_MEMBERS: "members",
+  DASHBOARD_MESSAGES: "messages",
 
-  // Profile
-    DASHBOARD_COLLEGE: "college/:username", 
-    DASHBOARD_COMPANY: "company/:username", 
-    DASHBOARD_COLLEGE_UPDATE: "college/:username/update", 
-    DASHBOARD_COMPANY_UPDATE: "company/:username/update", 
-    DASHBOARD_USER: ":username", 
-    
-    // Support & Help Routes
-    SUPPORT: "/support", // Main support page
-    HELP: "/help", // Main help page
-    FAQ: "/help/faq", // Frequently Asked Questions
-    CONTACT_SUPPORT: "/help/contact", // Contact support page
-  };
-  
+  // College & Company Routes
+  COLLEGE_CREATE: "colleges/create",
+  DASHBOARD_COLLEGE: "colleges/:username",
+  DASHBOARD_COLLEGE_UPDATE: "colleges/:username/update",
+
+  DASHBOARD_COMPANY: "companies/:username",
+  DASHBOARD_COMPANY_UPDATE: "companies/:username/update",
+
+  // Generic User Profile
+  DASHBOARD_USER: "users/:username",
+
+  // Support & Help Routes
+  SUPPORT: "/support",
+  HELP: "/help",
+  FAQ: "/help/faq",
+  CONTACT_SUPPORT: "/help/contact",
+};

@@ -4,6 +4,7 @@ import CourseCard from "@/components/custom/coures-card";
 import PageHeader from "@/components/custom/page-header";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/custom/footer";
+import { Helmet } from "react-helmet-async";
 
 // Sample course data for Enrolled Courses section
 const enrolledCourses = [
@@ -49,66 +50,83 @@ const CoursesPage: React.FC = () => {
   // Filter and search logic for the enrolled courses
   const filteredCourses = enrolledCourses.filter((course) => {
     const matchesSearch = course.title.toLowerCase().includes(search.toLowerCase());
-    const matchesFilter = selectedFilter ? course.type === selectedFilter : true;
+    const matchesFilter = selectedFilter ? course.title === selectedFilter : true;
     return matchesSearch && matchesFilter;
   });
 
   return (
-    <ScrollArea className="w-full h-screen">
-      <div className="pt-16">
-        {/* Courses Page Header */}
-        <PageHeader title="Courses" description="Your Enrolled Courses" />
+    <>
+      <Helmet>
+        <title>Courese - ON Campus Portal</title>
+      </Helmet>
+  
+      <div>
 
-        {/* Enrolled Courses Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center md:mx-40 mb-4">
-          <p className="text-2xl font-semibold mb-4 md:mb-0">Your Enrolled Courses</p>
-
-          {/* Search & Filter Section */}
-          <div className="flex flex-col md:flex-row gap-4 items-center">
-            {/* Search Input */}
-            <input
-              type="text"
-              placeholder="Search Courses..."
-              className="p-2 border rounded-md w-full md:w-60"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-
-            {/* Filter Dropdown */}
-            <select
-              value={selectedFilter}
-              onChange={(e) => setSelectedFilter(e.target.value)}
-              className="p-2 border rounded-md w-full md:w-40"
-            >
-              <option value="">All Courses</option>
-              <option value="React">React</option>
-              <option value="JavaScript">JavaScript</option>
-              <option value="Full Stack">Full Stack</option>
-              <option value="Node.js">Node.js</option>
-            </select>
-
-            {/* Add Button */}
-            <Button className="px-4 py-2 mt-2 md:mt-0">Add</Button>
+        <div className="border-b bg-white dark:bg-black">
+          <div className="pt-24 px-6 md:px-36 pb-10 space-y-2">
+            <h1 className="text-3xl font-semibold tracking-tight">Courses</h1>
+            <p className="text-muted-foreground text-md">Your Enrolled Courses</p>
           </div>
         </div>
+       
+          <div className="pt-16">
+            {/* Courses Page Header */}
+            {/* <PageHeader title="Courses" description="Your Enrolled Courses" /> */}
 
-        {/* Grid Layout for Courses */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:mx-36 p-5">
-          {filteredCourses.map((course) => (
-            <CourseCard
-              key={course.id}
-              image={course.image}
-              title={course.title}
-              description={course.description}
-              videosCount={course.videosCount}
-              enrolledStudents={course.enrolledStudents}
-            />
-          ))}
-        </div>
-        <Footer/>
+            {/* Enrolled Courses Section */}
+            <div className="flex flex-col md:flex-row justify-between items-center md:mx-36 mb-4">
+              <p className="text-2xl font-semibold mb-4 md:mb-0">Your Enrolled Courses</p>
+
+              {/* Search & Filter Section */}
+              <div className="flex flex-col md:flex-row gap-4 items-center">
+                {/* Search Input */}
+                <input
+                  type="text"
+                  placeholder="Search Courses..."
+                  className="p-2 border rounded-md w-full md:w-60"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+
+                {/* Filter Dropdown */}
+                <select
+                  value={selectedFilter}
+                  onChange={(e) => setSelectedFilter(e.target.value)}
+                  className="p-2 border rounded-md w-full md:w-40"
+                >
+                  <option value="">All Courses</option>
+                  <option value="React">React</option>
+                  <option value="JavaScript">JavaScript</option>
+                  <option value="Full Stack">Full Stack</option>
+                  <option value="Node.js">Node.js</option>
+                </select>
+
+                {/* Add Button */}
+                <Button className="px-4 py-2 mt-2 md:mt-0">Add</Button>
+              </div>
+            </div>
+
+            {/* Grid Layout for Courses */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:mx-32 p-5">
+              {filteredCourses.map((course) => (
+                <CourseCard
+                  key={course.id}
+                  image={course.image}
+                  title={course.title}
+                  description={course.description}
+                  videosCount={course.videosCount}
+                  enrolledStudents={course.enrolledStudents}
+                />
+              ))}
+            </div>
+            <Footer />
+          </div>
       </div>
-    </ScrollArea>
+
+
+    </>
   );
+
 };
 
 export default CoursesPage;

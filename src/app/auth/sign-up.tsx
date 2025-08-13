@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label"; // Assuming a custom Label compon
 import CommonInput from "@/components/common/CommonInput"; // Assuming a custom input component
 import CommonButton from "@/components/common/CommonButton"; // Assuming a custom button component
 import { Button } from "@/components/ui/button";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState<string>("");

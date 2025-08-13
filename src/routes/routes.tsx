@@ -6,7 +6,7 @@ import DashboardLayout from "@/layout/dashboard-layout";
 import Jobs from "@/app/dashboard/jobs";
 import Settings from "@/app/dashboard/settings";
 import Students from "@/app/dashboard/students";
-import Messages from "@/app/dashboard/message";
+// import Messages from "@/app/dashboard/message";
 import ProfilePage from "@/app/profiles/personal";
 import OrganizationProfile from "@/app/profiles/organization";
 import Members from "@/app/dashboard/members";
@@ -16,7 +16,7 @@ import ForgotPassword from "@/app/auth/forget-password";
 import SignUp from "@/app/auth/sign-up";
 import Verification from "@/app/auth/verification";
 import ResetPassword from "@/app/auth/reset-password";
-import { CollegeForm } from "@/app/college/college-form";
+// import { CollegeForm } from "@/app/college/college-form";
 import Overview from "@/app/overview/overview";
 import NotFound from "@/app/error/not-found";
 import LoginScreen from "@/app/auth/log-in";
@@ -73,10 +73,10 @@ const router = createBrowserRouter([
         path: ROUTES.DASHBOARD_STUDENTS,
         element: <Students />
       },
-      {
-        path: ROUTES.DASHBOARD_MESSAGES,
-        element: <Messages />
-      },
+      // {
+      //   path: ROUTES.DASHBOARD_MESSAGES,
+      //   element: <Messages />
+      // },
       {
         path: ROUTES.DASHBOARD_FIND_TALENT,
         element: <FindTalent />
@@ -94,10 +94,10 @@ const router = createBrowserRouter([
         path: ROUTES.DASHBOARD_COLLEGES,
         element: <OrganizationProfile />
       },
-      {
-        path: ROUTES.DASHBOARD_COLLEGE_UPDATE,
-        element: <CollegeForm />
-      },
+      // {
+      //   path: ROUTES.DASHBOARD_COLLEGE_UPDATE,
+      //   element: <CollegeForm />
+      // },
       {
         path: 'courses',
         element: <CoursesPage />

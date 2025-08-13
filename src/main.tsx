@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import {HelmetProvider} from 'react-helmet-async'
+// import {HelmetProvider} from 'react-helmet'
 import NextTopLoader from 'nextjs-toploader';
 
 import './index.css'
@@ -11,7 +11,7 @@ import store from "@/store/store.ts";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <HelmetProvider>
+
     <Provider store={store}>
       <NextTopLoader 
       color='#0ABE51'
@@ -20,6 +20,6 @@ createRoot(document.getElementById('root')!).render(
       />
       <App />
     </Provider>
-    </HelmetProvider>
+
   </StrictMode>,
 )

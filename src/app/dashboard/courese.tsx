@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { ScrollArea } from "@/components/ui/scroll-area"; // Import ScrollArea
 import CourseCard from "@/components/custom/coures-card";
-import PageHeader from "@/components/custom/page-header";
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/custom/footer";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 
 // Sample course data for Enrolled Courses section
 const enrolledCourses = [
@@ -111,7 +109,7 @@ const CoursesPage: React.FC = () => {
               {filteredCourses.map((course) => (
                 <CourseCard
                   key={course.id}
-                  image={course.image}
+                  // image={course.image}
                   title={course.title}
                   description={course.description}
                   videosCount={course.videosCount}

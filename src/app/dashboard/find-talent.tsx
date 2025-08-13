@@ -8,8 +8,8 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
-import { Search, Filter } from "lucide-react"
-import { Helmet } from "react-helmet-async"
+import { Filter } from "lucide-react"
+import { Helmet } from "react-helmet"
 
 const mockTalent = [
   {

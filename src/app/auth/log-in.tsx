@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 import { Button } from "@/components/ui/button";
 import StudentLoginForm from "./log-in-student";
 import MemberLoginForm from "./log-in-member";
-import DashboardFooter from "@/components/custom/dashboard-footer";
+// import DashboardFooter from "@/components/custom/dashboard-footer";
 
 const LoginScreen: React.FC = () => {
   const [role, setRole] = useState<"student" | "member">("student");

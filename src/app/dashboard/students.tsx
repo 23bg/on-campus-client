@@ -14,8 +14,8 @@ interface Student {
 }
 
 const Students: React.FC = () => {
-    const [search, setSearch] = useState("");
-    const [students, setStudents] = useState<Student[]>([
+    const [search, ] = useState("");
+    const [students, ] = useState<Student[]>([
         {
             id: 1,
             name: "John Doe",

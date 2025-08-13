@@ -24,7 +24,7 @@ export const collegeFormSchema = z.object({
   membersCount: z.string(),
   adminsCount: z.string(),
   placementYearStart: z.string(),
-  isVerified: z.string(),
+  isVerified: z.boolean(),
   verificationStatus: z.string(),
   status: z.string(),
   createdAt: z.string(),

@@ -1,5 +1,5 @@
 // components/custom/table-common.tsx
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import {
     Table,
     TableBody,
@@ -35,13 +35,13 @@ const TableComponent = <T extends Record<string, any>>({
     onRowClick,
     onEdit,
     onDelete,
-    rowsPerPageOptions = [5, 10, 15],
+    // rowsPerPageOptions = [5, 10, 15],
     defaultRowsPerPage = 5,
 }: TableComponentProps<T>) => {
     const [search, setSearch] = useState("");
     const [sortedData, setSortedData] = useState<T[]>(data);
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(defaultRowsPerPage);
+    const [page,] = useState(0);
+    const [rowsPerPage, ] = useState(defaultRowsPerPage);
     const [sortColumn, setSortColumn] = useState<keyof T | null>(null);
     const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 

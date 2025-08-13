@@ -12,8 +12,8 @@ interface Team {
 }
 
 const Staff: React.FC = () => {
-  const [search, setSearch] = useState("");
-  const [teams, setTeams] = useState<Team[]>([
+  const [search, ] = useState("");
+  const [teams, ] = useState<Team[]>([
     {
       id: 1,
       name: "Alpha Squad",
@@ -33,7 +33,7 @@ const Staff: React.FC = () => {
     // ...more teams
   ]);
 
-  const headers = [
+  const headers: { label: string; key: keyof Team; sortable?: boolean }[] = [
     { label: "Team Name", key: "name", sortable: true },
     { label: "Members", key: "members", sortable: true },
     { label: "Manager", key: "manager", sortable: true },

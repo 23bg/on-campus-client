@@ -2,7 +2,7 @@
 import React from "react";
 
 interface CourseCardProps {
-  image: string;
+  // image?: string;
   title: string;
   description: string;
   videosCount: number;
@@ -10,7 +10,7 @@ interface CourseCardProps {
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({
-  image,
+  // image,
   title,
   description,
   videosCount,

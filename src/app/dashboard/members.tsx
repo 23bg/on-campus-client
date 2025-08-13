@@ -5,8 +5,8 @@ import MemberTypes from "@/types"; // Ensure this type includes avatar, manager,
 import Footer from "@/components/custom/footer";
 
 const Members: React.FC = () => {
-  const [search, setSearch] = useState("");
-  const [teams, setTeams] = useState<MemberTypes[]>([
+  const [search, ] = useState("");
+  const [teams, ] = useState<MemberTypes[]>([
     {
       id: 1,
       name: "Alpha Squad",
@@ -186,11 +186,11 @@ const Members: React.FC = () => {
     // Add more teams as needed
   ]);
 
-  const headers = [
-    { label: "Team Name", key: "name", },
-    { label: "Members", key: "members", },
-    { label: "Manager", key: "manager"},
-    { label: "Email", key: "email"},
+  const headers: { label: string; key: keyof MemberTypes; sortable?: boolean }[] = [
+    { label: "Team Name", key: "name" },
+    { label: "Members", key: "members" },
+    { label: "Manager", key: "manager" },
+    { label: "Email", key: "email" },
   ];
 
   const filteredTeams = teams.filter(

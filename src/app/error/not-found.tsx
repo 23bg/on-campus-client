@@ -2,7 +2,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button"; // If you're using shadcn/ui or your own button
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 
 const NotFound: React.FC = () => {
   const navigate = useNavigate();
